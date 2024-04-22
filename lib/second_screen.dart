@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app_redesigned/third_screen.dart';
 import 'package:fruit_app_redesigned/widgets/colors.dart';
 import 'package:fruit_app_redesigned/widgets/general_layout.dart';
 import 'package:fruit_app_redesigned/widgets/group_of_widgets.dart';
@@ -77,8 +78,14 @@ class SecondScreen extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  DisplayCard(size: size),
-                  DisplayCard(size: size),
+                  DisplayCard(
+                    size: size,
+                    widgetID: fruits[0]['index'], 
+                  ),
+                  DisplayCard(
+                    size: size,
+                    widgetID: fruits[1]['index'],
+                  ),
                 ],
               ),
               Column(
@@ -86,12 +93,18 @@ class SecondScreen extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  DisplayCard(size: size),
-                  DisplayCard(size: size),
+                  DisplayCard(
+                    size: size,
+                    widgetID: fruits[2]['index'],
+                  ),
+                  DisplayCard(
+                    size: size,
+                    widgetID: fruits[3]['index'],
+                  ),
                 ],
               )
             ]),
-        SizedBox(
+        const SizedBox(
             // height: size.height * 0.025,
             ),
       ],

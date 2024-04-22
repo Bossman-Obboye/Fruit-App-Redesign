@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app_redesigned/third_screen.dart';
 import 'package:fruit_app_redesigned/widgets/colors.dart';
 
 // This is the widget that in place of the nav bar.
@@ -63,67 +64,113 @@ class DisplayCard extends StatelessWidget {
   const DisplayCard({
     super.key,
     required this.size,
+    required this.widgetID,
   });
 
+  final int widgetID;
   final Size size;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Container(
-        height: size.height * 0.156,
-        width: size.width * 0.4,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: greylike.withOpacity(0.3),
-                blurRadius: 4,
-                spreadRadius: 3,
-                // offset: Offset(0, 8),
-              ),
-            ]),
-        child: Stack(
-          children: [
-            Align(
-              alignment: const Alignment(-0.8, 0.8),
-              child: Image(
-                height: size.height * 0.1,
-                image: const AssetImage('assets/images/mango.png'),
-              ),
-            ),
-            Align(
-              alignment: const Alignment(0.8, -0.8),
-              child: SizedBox(
-                height: size.height * 0.06,
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Mango',
-                        style: TextStyle(
-                            color: white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17)),
-                    Text(
-                      "maing skl",
-                      style: TextStyle(
-                          color: white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 7),
-                    ),
-                  ],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return ThirdScreen(
+                image: fruits[widgetID]['image'],
+                name: fruits[widgetID]['name'],
+                price: fruits[widgetID]['price'],
+                description: fruits[widgetID]['description']);
+          }));
+        },
+        child: Container(
+          height: size.height * 0.156,
+          width: size.width * 0.4,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: greylike.withOpacity(0.2),
+                  blurRadius: 3,
+                  spreadRadius: 3,
+                  // offset: Offset(0, 8),
+                ),
+              ]),
+          child: Stack(
+            children: [
+              Align(
+                alignment: const Alignment(-0.8, 0.8),
+                child: Image(
+                  height: size.height * 0.1,
+                  image: AssetImage(fruits[widgetID]['image']),
                 ),
               ),
-            ),
-            const Align(
-                alignment: Alignment(1.2, 1.2),
-                child: Icon(
-                  Icons.add_box,
-                  size: 22,
-                  color: deepPrimaryColor,
-                )),
-          ],
+              Align(
+                alignment: const Alignment(0.8, -0.8),
+                child: SizedBox(
+                  height: size.height * 0.06,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(fruits[widgetID]['name'],
+                          style: const TextStyle(
+                              color: white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17)),
+                      Text(
+                        "Price: \$${fruits[widgetID]['price'].toStringAsFixed(2)}",
+                        style: const TextStyle(
+                            color: white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 7),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Align(
+                  alignment: Alignment(1.2, 1.2),
+                  child: Icon(
+                    Icons.add_box,
+                    size: 22,
+                    color: deepPrimaryColor,
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// this is the bottons on specifically the third screen.
+// This will require a widget a the center,
+// it may be an icon or an image or something else
+
+class ButtonWithIcon extends StatelessWidget {
+  const ButtonWithIcon({
+    super.key,
+    required this.size,
+    required this.content,
+  });
+  final Widget content;
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        // padding: EdgeInsets.all(6),
+        height: size.height * 0.05,
+        width: size.height * 0.05,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7),
+          color: greylike.withOpacity(0.2),
+        ),
+        child: Center(
+          child: content,
         ),
       ),
     );

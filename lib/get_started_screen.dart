@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app_redesigned/second_screen.dart';
+import 'package:fruit_app_redesigned/third_screen.dart';
 import 'package:fruit_app_redesigned/widgets/colors.dart';
 import 'package:fruit_app_redesigned/widgets/general_layout.dart';
 import 'package:fruit_app_redesigned/widgets/group_of_widgets.dart';
@@ -95,6 +97,36 @@ class GetStartedView extends StatelessWidget {
                 color: Color(0xff919292),
                 fontSize: 9,
                 fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.02,
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push((context),
+                MaterialPageRoute(builder: (context) => const SecondScreen()));
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            height: size.height * 0.024,
+            width: size.width * 0.23,
+            decoration: const BoxDecoration(
+              color: primaryColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5.5),
+                bottomLeft: Radius.circular(5.5),
+                topRight: Radius.circular(8),
+              ),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('View More',
+                    style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold)),
+                Icon(Icons.arrow_right_alt_outlined, size: 19),
+              ],
+            ),
           ),
         ),
       ],
