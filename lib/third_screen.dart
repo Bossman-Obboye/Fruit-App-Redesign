@@ -50,6 +50,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ButtonWithIcon(
+                onTap: () => Navigator.pop(context),
                 size: size,
                 content: Image(
                     width: size.width * 0.04,

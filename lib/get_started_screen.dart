@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_app_redesigned/second_screen.dart';
-import 'package:fruit_app_redesigned/third_screen.dart';
 import 'package:fruit_app_redesigned/widgets/colors.dart';
 import 'package:fruit_app_redesigned/widgets/general_layout.dart';
 import 'package:fruit_app_redesigned/widgets/group_of_widgets.dart';

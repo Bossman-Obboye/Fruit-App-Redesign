@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app_redesigned/get_started_screen.dart';
+import 'package:fruit_app_redesigned/models/fruit_model.dart';
 import 'package:fruit_app_redesigned/third_screen.dart';
 import 'package:fruit_app_redesigned/widgets/colors.dart';
 
@@ -14,12 +16,19 @@ class AppTitleRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          'FruitBasket',
-          style: TextStyle(
-            color: white,
-            fontFamily: 'MrsSaintDelafield',
-            fontSize: 20,
+        GestureDetector(
+          onTap: () {
+            Navigator.push((context), MaterialPageRoute(builder: (context) {
+              return const GetStartedView();
+            }));
+          },
+          child: const Text(
+            'FruitBasket',
+            style: TextStyle(
+              color: white,
+              fontFamily: 'MrsSaintDelafield',
+              fontSize: 20,
+            ),
           ),
         ),
         Icon(icon, color: white),
@@ -65,10 +74,12 @@ class DisplayCard extends StatelessWidget {
     super.key,
     required this.size,
     required this.widgetID,
+    required this.fruit,
   });
 
   final int widgetID;
   final Size size;
+  final EachFruit fruit;
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +89,10 @@ class DisplayCard extends StatelessWidget {
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return ThirdScreen(
-                image: fruits[widgetID]['image'],
-                name: fruits[widgetID]['name'],
-                price: fruits[widgetID]['price'],
-                description: fruits[widgetID]['description']);
+                image: fruit.image,
+                name: fruit.name,
+                price: fruit.price,
+                description: fruit.description);
           }));
         },
         child: Container(
@@ -153,14 +164,16 @@ class ButtonWithIcon extends StatelessWidget {
     super.key,
     required this.size,
     required this.content,
+    this.onTap,
   });
   final Widget content;
   final Size size;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         // padding: EdgeInsets.all(6),
         height: size.height * 0.05,
